@@ -22,7 +22,7 @@ function mdToHtml(md: string) {
     s
       .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
       .replace(/(^|[^*])\*(?!\s)(.+?)\*/g, "$1<em>$2</em>")
-      .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>');
+      .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
   return esc
     .split(/\n{2,}/)
     .filter((p) => p.trim())

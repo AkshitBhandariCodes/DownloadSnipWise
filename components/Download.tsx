@@ -37,7 +37,7 @@ export function Download() {
         },
       );
     });
-    setTimeout(() => window.location.assign(downloadUrl), 700);
+    setTimeout(() => window.open(downloadUrl, "_blank"), 700);
   };
 
   useGSAP(
@@ -87,11 +87,21 @@ export function Download() {
                 Install it, press Win+V, and your clipboard starts remembering. Everything stays on your PC.
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-3">
-                <a href="/download" className="btn btn-primary !h-[56px] !px-6 !text-[16px]">
+                <a
+                  href={downloadUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary !h-[56px] !px-6 !text-[16px]"
+                >
                   <WindowsLogo size={19} weight="fill" />
                   Download for Windows
                 </a>
-                <a href={releasesUrl} className="btn btn-paper !h-[56px]">
+                <a
+                  href={releasesUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-paper !h-[56px]"
+                >
                   Release notes
                   <ArrowUpRight size={16} weight="bold" />
                 </a>
@@ -109,7 +119,22 @@ export function Download() {
                 ))}
               </dl>
               {release.sha256 && (
-                <p className="mt-4 break-all font-mono text-[11.5px] text-ink-3">SHA-256 {release.sha256}</p>
+                <div className="mt-4 flex flex-col gap-1 rounded-[12px] border border-ink/20 bg-paper/50 p-2.5 font-mono text-[11.5px] text-ink-2">
+                  <div className="flex flex-wrap items-center justify-between gap-1">
+                    <span className="font-semibold text-ink">Asset: {release.asset}</span>
+                    <a
+                      href={releasesUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-coral-ink underline underline-offset-2 hover:opacity-85"
+                    >
+                      v{release.version} notes
+                    </a>
+                  </div>
+                  <p className="break-all text-[11px] text-ink-3">
+                    <span className="font-semibold text-ink-2">SHA-256:</span> {release.sha256}
+                  </p>
+                </div>
               )}
               {!release.signed && (
                 <p className="mt-5 flex max-w-[52ch] items-start gap-2 text-[13px] leading-relaxed text-ink-3">

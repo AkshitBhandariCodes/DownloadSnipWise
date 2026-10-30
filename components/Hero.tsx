@@ -6,6 +6,7 @@ import { gsap, SplitText, Draggable, useGSAP, prefersReducedMotion } from "@/lib
 import { copyText, type ClipKind } from "@/lib/clipStore";
 import { palSay } from "@/lib/palBus";
 import { scrollToTarget } from "./motion/SmoothScroll";
+import { downloadUrl } from "@/content/site";
 import { Container, KindTag, Tape } from "./ui";
 import { HeroDock } from "./HeroDock";
 
@@ -197,7 +198,12 @@ export function Hero() {
             shortcut.
           </p>
           <div data-hero-fade className="mt-9 flex flex-wrap items-center justify-center gap-3.5">
-            <a href="/download" className="btn btn-primary !h-[54px] !px-6 !text-[16px]">
+            <a
+              href={downloadUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-primary !h-[54px] !px-6 !text-[16px]"
+            >
               <WindowsLogo size={19} weight="fill" />
               Download for Windows
             </a>

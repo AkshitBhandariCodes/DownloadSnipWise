@@ -8,6 +8,7 @@ import { installCopyListener, useCaptured } from "@/lib/clipStore";
 import { scrollToTarget } from "./motion/SmoothScroll";
 import { Logo, type TapeColor } from "./ui";
 import { ThemeToggle } from "./ThemeToggle";
+import { downloadUrl } from "@/content/site";
 
 const links: { href: string; label: string; tape: TapeColor }[] = [
   { href: "#use-cases", label: "Use cases", tape: "lime" },
@@ -148,7 +149,13 @@ export function Nav() {
             <span className="tabular-nums">{count}</span>
             <span className="font-semibold text-ink-2">{count === 1 ? "clip" : "clips"}</span>
           </button>
-          <a href="/download" aria-label="Download SnipWise" className="btn btn-primary btn-sm !h-10 max-sm:!w-10 max-sm:!px-0">
+          <a
+            href={downloadUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Download SnipWise"
+            className="btn btn-primary btn-sm !h-10 max-sm:!w-10 max-sm:!px-0"
+          >
             <DownloadSimple size={16} weight="bold" />
             <span className="hidden sm:inline">Download</span>
           </a>

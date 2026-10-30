@@ -202,7 +202,12 @@ export function Compare() {
           <p className="mx-auto mt-12 max-w-[1120px] text-[12.5px] leading-relaxed text-ink-3">
             Based on each app&rsquo;s built-in features and its own docs, October 2026. Win+V from Microsoft Support, &ldquo;Using
             the clipboard&rdquo;. Spot something out of date?{" "}
-            <a href={`https://github.com/${site.links.feedbackRepo}/issues/new`} className="font-semibold underline underline-offset-2">
+            <a
+              href={`https://github.com/${site.links.feedbackRepo}/issues/new`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold underline underline-offset-2"
+            >
               Tell us
             </a>
             .

@@ -119,20 +119,30 @@ export function Community() {
               No investors and no tracking. If SnipWise saves you time every day, you can help keep it free for everyone.
             </p>
             <div className="mt-auto grid gap-3">
-              <a href={site.links.sponsorMonthly} className="btn btn-primary !h-auto justify-between !py-3.5">
+              <a
+                href={site.links.sponsorMonthly}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary !h-auto justify-between !py-3.5"
+              >
                 <span className="text-left">
                   <span className="block text-[15px] font-bold">Sponsor monthly</span>
                   <span className="block text-[12.5px] font-semibold opacity-75">A small amount, every month</span>
                 </span>
                 <HandHeart size={22} weight="duotone" />
               </a>
-              <a href={site.links.sponsorOnce} className="btn btn-paper !h-auto justify-between !py-3.5">
-                <span className="text-left">
+              <button
+                type="button"
+                onClick={() => palSay("coffee link coming soon! thank you!", "excited")}
+                className="btn btn-paper !h-auto justify-between !py-3.5 text-left"
+                title="Coming soon"
+              >
+                <span>
                   <span className="block text-[15px] font-bold">Buy a coffee</span>
-                  <span className="block text-[12.5px] font-semibold text-ink-3">A one-off thank you</span>
+                  <span className="block text-[12.5px] font-semibold text-ink-3">A one-off thank you (Coming soon)</span>
                 </span>
                 <Coffee size={22} weight="duotone" />
-              </a>
+              </button>
             </div>
           </div>
         </div>

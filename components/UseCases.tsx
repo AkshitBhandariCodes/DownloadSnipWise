@@ -6,6 +6,7 @@ import { PaintPaletteIcon } from "mochi-icons/PaintPaletteIcon";
 import { EditIcon } from "mochi-icons/EditIcon";
 import { gsap, ScrollTrigger, useGSAP, prefersReducedMotion } from "@/lib/gsap";
 import type { Mood } from "@/lib/palBus";
+import { scrollToTarget } from "./motion/SmoothScroll";
 import { Container, SectionHeading, type TapeColor } from "./ui";
 import { PalDock } from "./pal/PalGuide";
 import { DevDesk } from "./desks/DevDesk";
@@ -149,6 +150,10 @@ export function UseCases() {
             <a
               key={c.id}
               href={`#${c.id}`}
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToTarget(`#${c.id}`);
+              }}
               className="btn btn-paper btn-sm gap-2"
             >
               <c.Icon size={20} aria-hidden />

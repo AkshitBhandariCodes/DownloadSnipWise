@@ -1,26 +1,317 @@
 @import "tailwindcss";
+@import "lenis/dist/lenis.css";
 
+/*
+  SnipWise launch site: "sticker desk" theme.
+  Cream cutting-mat page, paper stickers with ink outlines and hard shadows, washi tape.
+  Coral is the brand and the only CTA colour. The pastels are tape and sticker colours,
+  each one tied to a clip type or a persona, never to buttons.
+  Radius rule: stickers and cards 20px, app windows 14px, buttons 14px, fields 10px, chips pill.
+*/
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #f3efe4;
+  --paper: #fffdf6;
+  --ink: #17121f;
+  --ink-2: #4b4555;
+  --ink-3: #6f6878;
+  --line: #17121f;
+  --hair: #e3ddcd;
+
+  --coral: #ff5a36;
+  --coral-ink: #c0391a; /* coral as small text, AA on paper */
+  --lime: #d6f57e;
+  --lilac: #d2cbff;
+  --sky: #b2defd;
+  --butter: #ffe27f;
+  --pink: #ffc6d4;
+  --mint: #c3f0da;
+
+  --chrome: #f6f1e4; /* window title bars */
+  --grid: rgb(23 18 31 / 0.045);
+  --grid-strong: rgb(23 18 31 / 0.05);
+  --dot: rgb(23 18 31 / 0.16);
+  /* Fixed colours that never flip with the theme. */
+  --snow: #fffdf6;
+  --night: #17121f;
+
+  --shadow: 4px 4px 0 var(--ink);
+  --shadow-sm: 2px 2px 0 var(--ink);
+}
+
+/*
+  Night desk: the same stickers under a desk lamp. Ink turns to chalk, so
+  outlines and hard shadows glow cream, and the pastel tapes deepen into
+  jewel tones that keep chalk text readable.
+*/
+html.dark {
+  color-scheme: dark;
+  --bg: #121016;
+  --paper: #1d1924;
+  --ink: #f4ecdc;
+  --ink-2: #cfc6d8;
+  --ink-3: #9d93a9;
+  --line: #f4ecdc;
+  --hair: #2e2838;
+  --chrome: #27212f;
+  --grid: rgb(244 236 220 / 0.035);
+  --grid-strong: rgb(244 236 220 / 0.045);
+  --dot: rgb(244 236 220 / 0.14);
+
+  --coral-ink: #ff8b6e;
+  --lime: #4a6b10;
+  --lilac: #4c3fa0;
+  --sky: #1d5f8e;
+  --butter: #7d5e00;
+  --pink: #8e2d52;
+  --mint: #19694c;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Theme switch: the new theme grows out of the toggle as a circle. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-line: var(--line);
+  --color-hair: var(--hair);
+  --color-chrome: var(--chrome);
+  --color-snow: var(--snow);
+  --color-night: var(--night);
+  --color-coral: var(--coral);
+  --color-coral-ink: var(--coral-ink);
+  --color-lime: var(--lime);
+  --color-lilac: var(--lilac);
+  --color-sky: var(--sky);
+  --color-butter: var(--butter);
+  --color-pink: var(--pink);
+  --color-mint: var(--mint);
+
+  --font-sans: var(--font-bricolage), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-pixel: var(--font-pixelify), monospace;
+
+  --radius-card: 20px;
+  --radius-window: 14px;
+  --radius-btn: 14px;
+  --radius-field: 10px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-padding-top: 110px;
+  overflow-x: clip;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg);
+  transition: background-color 0.3s;
+  /* Cutting mat: a faint 32px grid with a stronger line every 4 cells. */
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+    linear-gradient(var(--grid-strong) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-strong) 1px, transparent 1px);
+  background-size: 32px 32px, 32px 32px, 128px 128px, 128px 128px;
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--butter);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 3px solid var(--coral);
+  outline-offset: 3px;
+}
+
+@layer components {
+/* The display face from the brief: Bricolage at 760, tight leading. */
+.display {
+  font-family: var(--font-display);
+  font-weight: 760;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+  color: var(--ink);
+  font-variation-settings: "opsz" 96;
+}
+
+/* A paper sticker: ink outline, hard shadow. */
+.sticker {
+  background: var(--paper);
+  border: 2px solid var(--line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow);
+}
+
+/* Chunky press buttons. Text stays ink on every fill for contrast. */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 3rem;
+  padding: 0 1.25rem;
+  border: 2px solid var(--line);
+  border-radius: var(--radius-btn);
+  box-shadow: 0 4px 0 var(--ink);
+  font-weight: 650;
+  font-size: 15px;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  transition:
+    transform 0.14s cubic-bezier(0.3, 0.7, 0.4, 1),
+    box-shadow 0.14s cubic-bezier(0.3, 0.7, 0.4, 1),
+    background-color 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 var(--ink);
+}
+.btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 var(--ink);
+}
+.btn-primary {
+  background: var(--coral);
+  color: var(--night);
+}
+/* A light sweep across the primary button on hover. */
+.btn-primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 30%, rgb(255 255 255 / 0.45) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 0.6s ease;
+  pointer-events: none;
+}
+.btn-primary:hover::after {
+  transform: translateX(120%);
+}
+.btn-paper {
+  background: var(--paper);
+}
+.btn-ink {
+  background: var(--ink);
+  color: var(--paper);
+  box-shadow: 0 4px 0 var(--coral);
+}
+.btn-ink:hover {
+  box-shadow: 0 6px 0 var(--coral);
+}
+.btn-ink:active {
+  box-shadow: 0 0 0 var(--coral);
+}
+.btn-sm {
+  height: 2.25rem;
+  padding: 0 0.85rem;
+  font-size: 13px;
+  border-radius: 11px;
+  box-shadow: 0 3px 0 var(--ink);
+}
+.btn-sm:hover {
+  box-shadow: 0 4px 0 var(--ink);
+}
+
+/* Washi tape strip. Colour comes from a bg-* utility. */
+.tape {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.8rem;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  /* Torn ends. */
+  clip-path: polygon(0 8%, 4% 0, 8% 10%, 12% 0, 88% 0, 92% 8%, 96% 0, 100% 10%, 100% 90%, 96% 100%, 92% 92%, 88% 100%, 12% 100%, 8% 90%, 4% 100%, 0 92%);
+  opacity: 0.95;
+}
+
+/* Dotted preview surface used in feature cards. */
+.dots {
+  background-image: radial-gradient(var(--dot) 1px, transparent 1.2px);
+  background-size: 14px 14px;
+}
+}
+
+.pixelated {
+  image-rendering: pixelated;
+}
+
+/* Hide scrollbars on small horizontal rails while keeping them scrollable. */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Elements GSAP reveals start hidden only when JS and motion are available. */
+html.js-motion [data-reveal] {
+  visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes bubble {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes emote {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.3) rotate(-20deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes float-y {
+  50% {
+    transform: translateY(-8px);
+  }
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes caret {
+  50% {
+    opacity: 0;
+  }
 }

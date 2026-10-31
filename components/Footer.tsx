@@ -20,6 +20,9 @@ const columns = [
   {
     title: "Project",
     links: [
+      { label: "Privacy policy", href: "/privacy-policy" },
+      { label: "Terms of service", href: "/terms-of-service" },
+      { label: "Contact", href: `mailto:${site.links.contactEmail}` },
       { label: "Release notes", href: releasesUrl },
       { label: "Request a feature", href: `https://github.com/${site.links.feedbackRepo}/issues/new` },
       { label: "Sponsor", href: site.links.sponsorMonthly },

@@ -25,6 +25,7 @@ export const site = {
 
   links: {
     github: "https://github.com/AkshitBhandariCodes",
+    contactEmail: "akshitbhandaricodes@gmail.com",
     // Feature requests open a prefilled GitHub issue in this public repo.
     feedbackRepo: "AkshitBhandariCodes/DownloadSnipWise",
     sponsorMonthly: "https://github.com/sponsors/AkshitBhandariCodes",

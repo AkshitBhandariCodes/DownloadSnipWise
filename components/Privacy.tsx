@@ -106,8 +106,8 @@ export function Privacy() {
         <SectionHeading
           tape="Privacy"
           tapeColor="pink"
-          title="Your clips never leave your PC."
-          sub="SnipWise is local-first. Everything you copy goes into a database on your own machine, and that is the whole journey."
+          title="Your clips stay yours."
+          sub="SnipWise saves clips on your device. Optional sync encrypts them there, then stores them in your own Google Drive."
         />
 
         <div data-priv-grid className="mx-auto mt-16 grid max-w-[1040px] grid-cols-1 items-stretch gap-5 md:grid-cols-[1.25fr_1fr]">
@@ -162,11 +162,11 @@ export function Privacy() {
                 saved here: <span data-count className="tabular-nums">{drops.length}</span>
               </span>
               <span data-zero className="inline-block rounded-[9px] border-2 border-ink bg-paper px-2.5 py-1">
-                uploaded: 0 bytes
+                sent to us: 0 bytes
               </span>
             </div>
-            <p className="mt-4 text-center text-[22px] font-[760] tracking-[-0.03em]">A local database. That&rsquo;s it.</p>
-            <p className="mt-1 text-center text-[15px] text-ink-2">No account. No SnipWise server. Nothing to breach.</p>
+            <p className="mt-4 text-center text-[22px] font-[760] tracking-[-0.03em]">Your history starts here.</p>
+            <p className="mt-1 text-center text-[15px] text-ink-2">Capture works offline, without an account.</p>
           </div>
 
           <div className="flex flex-col gap-5">
@@ -190,8 +190,8 @@ export function Privacy() {
                 <span data-no-server className="absolute left-1/2 top-1/2 h-[3px] w-[70px] -translate-x-1/2 -translate-y-1/2 -rotate-45 rounded-full bg-coral" />
               </span>
               <div>
-                <p className="text-[17px] font-[760] tracking-[-0.02em]">No SnipWise servers</p>
-                <p className="mt-0.5 text-[14px] leading-relaxed text-ink-2">We never receive your clips, even with sync on.</p>
+                <p className="text-[17px] font-[760] tracking-[-0.02em]">No clips on our servers</p>
+                <p className="mt-0.5 text-[14px] leading-relaxed text-ink-2">The account service handles sign-in, never clipboard content.</p>
               </div>
             </div>
             <ul className="grid gap-3">
@@ -207,6 +207,9 @@ export function Privacy() {
             </ul>
           </div>
         </div>
+        <p className="mt-8 text-center text-sm text-ink-2">
+          Read the <a className="font-semibold underline underline-offset-4" href="/privacy-policy">Privacy Policy</a> for how SnipWise handles account and Google Drive data.
+        </p>
       </Container>
     </section>
   );

@@ -1,14 +1,70 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { WindowsLogo, ArrowUpRight, ShieldWarning, FolderSimple } from "@phosphor-icons/react";
-import { site, releasesUrl, downloadUrl } from "@/content/site";
+import { site, releasesUrl as staticReleasesUrl, downloadUrl as staticDownloadUrl } from "@/content/site";
+import { fetchLatestRelease, installerAsset, versionFromTag } from "@/lib/releases";
 import { gsap, Draggable, useGSAP, prefersReducedMotion } from "@/lib/gsap";
 import { palSay } from "@/lib/palBus";
 import { Container, Tape } from "./ui";
 import { PalDock } from "./pal/PalGuide";
 
-const { release } = site;
+const staticRelease = site.release;
+
+  const [live, setLive] = useState<{
+    version: string;
+    asset: string;
+    sha256: string;
+    downloadUrl: string;
+    releasesUrl: string;
+  } | null>(null);
+
+  useEffect(() => {
+    let active = true;
+    fetchLatestRelease()
+      .then(async (r) => {
+        const asset = installerAsset(r);
+        if (!asset || !active) return;
+        let sha256 = "";
+        try {
+          const shaRes = await fetch(
+            `https://github.com/${site.release.repo}/releases/download/${r.tag_name}/${asset.name}.sha256`,
+          );
+          if (shaRes.ok) {
+            const text = await shaRes.text();
+            sha256 = text.trim().split(/\s+/)[0] ?? "";
+          }
+        } catch {
+          // ignore; fall back to empty
+        }
+        if (!active) return;
+        setLive({
+          version: versionFromTag(r.tag_name),
+          asset: asset.name,
+          sha256,
+          downloadUrl: asset.browser_download_url,
+          releasesUrl: r.html_url,
+        });
+      })
+      .catch(() => {
+        // keep static fallback
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const release = live
+    ? {
+        version: live.version,
+        asset: live.asset,
+        sha256: live.sha256,
+        requirements: staticRelease.requirements,
+        signed: staticRelease.signed,
+      }
+    : staticRelease;
+  const downloadUrl = live?.downloadUrl ?? staticDownloadUrl;
+  const releasesUrl = live?.releasesUrl ?? staticReleasesUrl;
 
 /**
  * Download card. The installer is a file sticker you can drag into the

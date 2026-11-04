@@ -12,13 +12,13 @@ export const site = {
   release: {
     // Public GitHub repo that hosts the Windows releases.
     repo: "AkshitBhandariCodes/DownloadSnipWise",
-    tag: "beta-0.2.0",
+    tag: "beta-0.3.8",
     // File name of the installer attached to every release.
-    asset: "SnipWise-Setup-0.2.0-x64.exe",
-    version: "0.2.0",
-    name: "SnipWise 0.2.0 Beta (Windows)",
+    asset: "SnipWise-Setup-0.3.8-x64.exe",
+    version: "0.3.8",
+    name: "SnipWise 0.3.8 Beta (Windows)",
     // SHA-256 of the current installer, shown under the download button.
-    sha256: "2f0f2aed913ac96657a1c49aec5ed0a211a61644de75a6a7787db1e91515f536",
+    sha256: "83763944e3381534b1359a2e9c68d3fede16331eb970d63ac5631fe82f52638e",
     requirements: "Windows 10 or 11, 64-bit",
     signed: false,
   },

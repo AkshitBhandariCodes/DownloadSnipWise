@@ -11,6 +11,14 @@ import { PalDock } from "./pal/PalGuide";
 
 const staticRelease = site.release;
 
+/**
+ * Download card. The installer is a file sticker you can drag into the
+ * Downloads folder (which starts the download), or just use the button.
+ */
+export function Download() {
+  const root = useRef<HTMLElement>(null);
+  const [dropped, setDropped] = useState(false);
+
   const [live, setLive] = useState<{
     version: string;
     asset: string;
@@ -65,14 +73,6 @@ const staticRelease = site.release;
     : staticRelease;
   const downloadUrl = live?.downloadUrl ?? staticDownloadUrl;
   const releasesUrl = live?.releasesUrl ?? staticReleasesUrl;
-
-/**
- * Download card. The installer is a file sticker you can drag into the
- * Downloads folder (which starts the download), or just use the button.
- */
-export function Download() {
-  const root = useRef<HTMLElement>(null);
-  const [dropped, setDropped] = useState(false);
 
   const start = () => {
     setDropped(true);

@@ -6,7 +6,6 @@ import { StorageJarIcon } from "mochi-icons/StorageJarIcon";
 import { LockIcon } from "mochi-icons/LockIcon";
 import { EyeClosedIcon } from "mochi-icons/EyeClosedIcon";
 import { WifiIcon } from "mochi-icons/WifiIcon";
-import { GoogleIcon } from "mochi-icons/GoogleIcon";
 import { gsap, useGSAP, prefersReducedMotion } from "@/lib/gsap";
 import { Container, SectionHeading } from "./ui";
 import { PalDock } from "./pal/PalGuide";
@@ -170,20 +169,6 @@ export function Privacy() {
           </div>
 
           <div className="flex flex-col gap-5">
-            <div data-promise className="sticker relative flex items-center gap-4 !rounded-[20px] p-5">
-              <span className="grid h-14 w-14 shrink-0 place-items-center rounded-[14px] border-2 border-ink bg-mint">
-                <GoogleIcon size={30} aria-hidden />
-              </span>
-              <div>
-                <p className="flex items-center gap-2 text-[17px] font-[760] tracking-[-0.02em]">
-                  Optional sync
-                  <span className="tape bg-butter !px-2 !py-0.5 text-[9.5px]">soon</span>
-                </p>
-                <p className="mt-0.5 text-[14px] leading-relaxed text-ink-2">
-                  Encrypted on your PC first, then stored in your own Google Drive.
-                </p>
-              </div>
-            </div>
             <div data-promise className="sticker relative flex items-center gap-4 !rounded-[20px] p-5">
               <span className="relative grid h-14 w-14 shrink-0 place-items-center rounded-[14px] border-2 border-dashed border-ink/50 font-mono text-[11px] font-bold text-ink-3">
                 server

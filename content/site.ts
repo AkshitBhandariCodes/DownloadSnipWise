@@ -5,20 +5,20 @@
 export const site = {
   name: "SnipWise",
   url: "https://snipwise.akshitbhandari.codes",
-  tagline: "Your clipboard, with a memory.",
+  tagline: "Your clipboard, with a memory. SnipWise is free forever.",
   description:
-    "SnipWise keeps everything you copy on Windows, so you can search it, convert it and paste it back in a keystroke. Local-first, with a pixel pal.",
+    "SnipWise keeps everything you copy on Windows, so you can search it, convert it and paste it back in a keystroke. Local-first, with a snip pal.",
 
   release: {
-    // Public GitHub repo that hosts the Windows releases.
+    // Public GitHub repo that hosts the releases.
     repo: "AkshitBhandariCodes/DownloadSnipWise",
-    tag: "beta-0.3.8",
+    tag: "v1.0.0",
     // File name of the installer attached to every release.
-    asset: "SnipWise-Setup-0.3.8-x64.exe",
-    version: "0.3.8",
-    name: "SnipWise 0.3.8 Beta (Windows)",
+    asset: "SnipWise-Setup-1.0.0-x64.exe",
+    version: "1.0.0",
+    name: "SnipWise 1.0.0",
     // SHA-256 of the current installer, shown under the download button.
-    sha256: "83763944e3381534b1359a2e9c68d3fede16331eb970d63ac5631fe82f52638e",
+    sha256: "",
     requirements: "Windows 10 or 11, 64-bit",
     signed: false,
   },
@@ -36,7 +36,7 @@ export const site = {
 
   // Features that exist in the app but are not open to the public yet.
   comingSoon: {
-    sync: true,
+    sync: false,
   },
 } as const;
 

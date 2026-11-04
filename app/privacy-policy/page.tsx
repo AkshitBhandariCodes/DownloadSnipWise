@@ -16,7 +16,7 @@ export default function PrivacyPolicyPage() {
     >
       <section>
         <h2>Who this covers</h2>
-        <p>This policy covers the SnipWise desktop app and the website at <a href={site.url}>{site.url}</a>. SnipWise is operated by Akshit Bhandari. Optional features described here may be unavailable in some beta builds.</p>
+        <p>This policy covers the SnipWise desktop app and the website at <a href={site.url}>{site.url}</a>. SnipWise is operated by Akshit Bhandari. Optional features described here may be unavailable.</p>
       </section>
 
       <section>

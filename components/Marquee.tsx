@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { gsap, ScrollTrigger, useGSAP, prefersReducedMotion } from "@/lib/gsap";
 
-const words = ["copy once", "search it", "convert it", ";shortcuts", "drag it out", "works offline", "skips passwords", "pixel pal", "Win+V"];
+const words = ["copy once", "search it", "convert it", ";shortcuts", "drag it out", "works offline", "skips passwords", "snip pal", "Ctrl+Shift+V"];
 
 /** Two tilted tape strips that run in opposite directions and lean with scroll speed. */
 export function Marquee() {

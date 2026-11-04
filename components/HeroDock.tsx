@@ -106,7 +106,8 @@ export function HeroDock() {
                   className="h-8 flex-1 bg-transparent text-[15px] font-medium outline-none placeholder:text-ink-3"
                 />
                 <span className="hidden items-center gap-1 sm:flex">
-                  <Kbd>Win</Kbd>
+                  <Kbd>Ctrl</Kbd>
+                  <Kbd>Shift</Kbd>
                   <Kbd>V</Kbd>
                 </span>
               </div>

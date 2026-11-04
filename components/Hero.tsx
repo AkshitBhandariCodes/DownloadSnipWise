@@ -180,7 +180,7 @@ export function Hero() {
         <div data-hero-copy className="relative mx-auto flex max-w-[980px] flex-col items-center text-center">
           <div data-hero-tape>
             <Tape color="lime" tilt={-3}>
-              New: SnipWise beta for Windows
+              New: SnipWise for Windows
             </Tape>
           </div>
           <h1 className="display mt-7 text-[46px] sm:text-[64px] md:text-[80px] lg:text-[90px]">
@@ -215,7 +215,7 @@ export function Hero() {
           <p data-hero-fade className="mt-5 flex items-center gap-2 text-[13.5px] font-medium text-ink-3">
             <HandPointing size={16} weight="duotone" className="hidden lg:block" />
             <span className="hidden lg:inline">Drag the clips around, or click one to copy it.</span>
-            <span className="lg:hidden">Free while in beta. Windows 10 and 11.</span>
+            <span className="lg:hidden">Free. Works on Windows 10 and 11.</span>
           </p>
         </div>
       </Container>

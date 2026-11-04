@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { fetchReleases, installerAsset, versionFromTag } from "@/lib/releases";
-import { site } from "@/content/site";
 import { Container } from "@/components/ui";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
@@ -36,7 +35,7 @@ export default function ReleasesPage() {
         <Container>
           <h1 className="display text-[48px] md:text-[68px]">Releases</h1>
           <p className="mt-4 max-w-[60ch] text-[17px] text-ink-2">
-            Every published Windows beta of SnipWise. Each installer is paired with a signed update manifest.
+            Every published Windows release of SnipWise. Each installer is paired with a signed update manifest.
           </p>
           {loading && <p className="mt-8 font-mono text-[13px] text-ink-3">Loading releases…</p>}
           {error && <p className="mt-8 font-mono text-[13px] text-coral-ink">{error}</p>}

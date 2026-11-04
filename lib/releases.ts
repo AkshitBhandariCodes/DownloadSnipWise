@@ -1,6 +1,6 @@
 // Client-side helpers for reading the public GitHub release feed.
 // The site keeps a static fallback in content/site.ts, but these helpers
-// let the download UI and releases page follow the newest published beta
+// let the download UI and releases page follow the newest published release
 // without a manual edit on every release.
 
 export const RELEASE_REPO = "AkshitBhandariCodes/DownloadSnipWise";
@@ -41,5 +41,5 @@ export function installerAsset(release: GitHubRelease): ReleaseAsset | undefined
 }
 
 export function versionFromTag(tag: string): string {
-  return tag.replace(/^beta-/, "");
+  return tag.replace(/^v/, "").replace(/^beta-/, "");
 }

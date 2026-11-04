@@ -42,7 +42,8 @@ const cols = "grid-cols-[1fr_1fr] md:grid-cols-[1.35fr_1.25fr_repeat(4,minmax(0,
 
 export function Compare() {
   const root = useRef<HTMLElement>(null);
-  const [pick, setPick] = useState("winv");
+  const mainRivalId = rivals[0]?.id || "winv";
+  const [pick, setPick] = useState(mainRivalId);
 
   useGSAP(
     () => {
@@ -83,8 +84,8 @@ export function Compare() {
             );
         });
         const forget = rows.length * 0.5;
-        tl.to("[data-rv='winv'] [data-forget-text]", { opacity: 0.28, filter: "blur(1.5px)", duration: 0.8, stagger: 0.06 }, forget)
-          .fromTo("[data-rv='winv'] [data-strike]", { scaleX: 0 }, { scaleX: 1, duration: 0.5, stagger: 0.06 }, forget)
+        tl.to(`[data-rv='${mainRivalId}'] [data-forget-text]`, { opacity: 0.28, filter: "blur(1.5px)", duration: 0.8, stagger: 0.06 }, forget)
+          .fromTo(`[data-rv='${mainRivalId}'] [data-strike]`, { scaleX: 0 }, { scaleX: 1, duration: 0.5, stagger: 0.06 }, forget)
           .fromTo("[data-forgot]", { scale: 0, rotate: -30 }, { scale: 1, rotate: -6, duration: 0.4, ease: "back.out(2.5)" }, forget + 0.4)
           .fromTo(
             "[data-keeps]",
@@ -149,7 +150,7 @@ export function Compare() {
                   >
                     <span className="text-[16px] font-[760] leading-tight tracking-[-0.02em]">{r.name}</span>
                     <span className="text-[11.5px] font-semibold text-ink-3">{r.kind}</span>
-                    {r.id === "winv" && (
+                    {r.id === mainRivalId && (
                       <span data-forgot className="tape absolute -top-1 right-2 bg-pink !px-2 !py-0.5 text-[9.5px]">
                         forgot
                       </span>
@@ -178,7 +179,7 @@ export function Compare() {
                         <span data-forget-text className="block">
                           <Mark cell={row.rivals[r.id]} />
                         </span>
-                        {r.id === "winv" && (
+                        {r.id === mainRivalId && (
                           <span
                             data-strike
                             aria-hidden

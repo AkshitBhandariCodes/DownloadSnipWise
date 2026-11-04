@@ -38,7 +38,7 @@ export function Footer() {
         <div>
           <Logo />
           <p className="mt-4 max-w-[34ch] text-[15px] leading-relaxed text-ink-2">
-            {site.tagline} A local-first clipboard for Windows, with a pal.
+            {site.tagline} A local-first clipboard for Windows, with a snip pal.
           </p>
           <div className="mt-5 flex gap-2">
             <a
@@ -96,7 +96,7 @@ export function Footer() {
       {/* Giant wordmark. The pal ends its trip asleep on top of it. */}
       <div className="relative mt-14 select-none">
         <div className="relative mx-auto w-fit">
-          <PalDock name="footer" pose="sleep" mood="sleep" className="left-[72%] top-[21%]" say={["zzz", "five more minutes", "see you on Win+V"]} />
+          <PalDock name="footer" pose="sleep" mood="sleep" className="left-[72%] top-[21%]" say={["zzz", "five more minutes", "see you on Ctrl+Shift+V"]} />
           <p aria-hidden className="display translate-y-[18%] whitespace-nowrap text-center text-[25vw] leading-[0.8] tracking-[-0.06em] text-ink">
             SnipWise
           </p>

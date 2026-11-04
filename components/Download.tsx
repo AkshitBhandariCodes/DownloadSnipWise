@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { WindowsLogo, ArrowUpRight, ShieldWarning, FolderSimple } from "@phosphor-icons/react";
+import { WindowsLogo, ArrowUpRight, FolderSimple } from "@phosphor-icons/react";
 import { site, releasesUrl as staticReleasesUrl, downloadUrl as staticDownloadUrl } from "@/content/site";
 import { fetchLatestRelease, installerAsset, versionFromTag } from "@/lib/releases";
 import { gsap, Draggable, useGSAP, prefersReducedMotion } from "@/lib/gsap";
@@ -132,7 +132,7 @@ export function Download() {
             <PalDock name="download" pose="sit" mood="excited" className="left-[30%] top-0" say={["take me home!", "drag it in!", "it's free!"]} />
             <div>
               <Tape color="lime" tilt={-3}>
-                Free while in beta
+                Free. Works on Windows 10 and 11.
               </Tape>
               <h2 className="display mt-6 text-[48px] md:text-[68px]">
                 Take SnipWise
@@ -140,7 +140,7 @@ export function Download() {
                 home.
               </h2>
               <p className="mt-5 max-w-[42ch] text-[17px] leading-relaxed text-ink-2">
-                Install it, press Win+V, and your clipboard starts remembering. Everything stays on your PC.
+                Install it, press Ctrl+Shift+V, and your clipboard starts remembering. Everything stays on your PC.
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-3">
                 <a
@@ -164,7 +164,7 @@ export function Download() {
               </div>
               <dl className="mt-8 flex flex-wrap gap-2.5">
                 {[
-                  ["Version", `${release.version} beta`],
+                  ["Version", `${release.version}`],
                   ["Needs", release.requirements],
                   ["Price", "Free"],
                 ].map(([k, v]) => (
@@ -192,12 +192,7 @@ export function Download() {
                   </p>
                 </div>
               )}
-              {!release.signed && (
-                <p className="mt-5 flex max-w-[52ch] items-start gap-2 text-[13px] leading-relaxed text-ink-3">
-                  <ShieldWarning size={17} weight="duotone" className="mt-px shrink-0" />
-                  The beta isn’t code-signed yet, so Windows SmartScreen may warn you. Choose More info, then Run anyway.
-                </p>
-              )}
+              
             </div>
 
             {/* Drag-to-download desk. */}

@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { CopySimple, Check, Play, X } from "@phosphor-icons/react";
+import { Play, X } from "@phosphor-icons/react";
 import { features, type Feature } from "@/content/features";
-import { copyText } from "@/lib/clipStore";
 import { gsap, useGSAP, prefersReducedMotion } from "@/lib/gsap";
 import { previews } from "./previews/Previews";
 import { Container, SectionHeading, type TapeColor } from "./ui";
@@ -28,24 +27,6 @@ const chip: Record<TapeColor, string> = {
   mint: "bg-mint",
 };
 
-function StripCopy({ text }: { text: string }) {
-  const [done, setDone] = useState(false);
-  return (
-    <button
-      type="button"
-      onClick={() => {
-        copyText(text);
-        setDone(true);
-        setTimeout(() => setDone(false), 1100);
-      }}
-      className="flex items-center gap-1 rounded-[8px] bg-paper/15 px-2.5 py-1 text-[12px] font-bold text-paper transition-colors hover:bg-paper/25"
-    >
-      {done ? <Check size={13} weight="bold" /> : <CopySimple size={13} weight="bold" />}
-      {done ? "Copied" : "Copy"}
-    </button>
-  );
-}
-
 function Card({ f, onPlay }: { f: Feature; onPlay: (f: Feature) => void }) {
   const Preview = previews[f.id];
   return (
@@ -64,7 +45,7 @@ function Card({ f, onPlay }: { f: Feature; onPlay: (f: Feature) => void }) {
             className="absolute inset-0 h-full w-full object-cover"
           />
         ) : (
-          <Preview />
+          Preview ? <Preview /> : null
         )}
         <span className="absolute right-2.5 top-2 font-mono text-[9.5px] font-semibold uppercase tracking-[0.16em] text-ink/60">{f.corner}</span>
         {f.soon && (
@@ -99,14 +80,6 @@ function Card({ f, onPlay }: { f: Feature; onPlay: (f: Feature) => void }) {
               {t}
             </span>
           ))}
-        </div>
-        <div className="mt-auto pt-4">
-          <div className="flex items-center justify-between gap-2 rounded-[12px] bg-ink py-1.5 pl-3.5 pr-1.5">
-            <code className="truncate font-mono text-[12.5px] font-semibold text-paper/90">
-              <span className="text-lime">›</span> {f.strip}
-            </code>
-            <StripCopy text={f.strip} />
-          </div>
         </div>
       </div>
     </article>
@@ -171,7 +144,7 @@ export function FeatureGallery() {
             tapeColor="lilac"
             title={
               <>
-                Twelve tiny tools.
+                Eleven tiny tools.
                 <br />
                 One clipboard.
               </>

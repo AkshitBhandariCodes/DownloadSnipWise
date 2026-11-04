@@ -330,6 +330,36 @@ function Sync() {
   );
 }
 
+function Mac() {
+  const s = useLoop((tl) => {
+    tl.set(".m-notch", { width: 64, height: 18 })
+      .set(".m-clip", { opacity: 0, scale: 0.8 })
+      .to(".m-notch", { width: 168, height: 32, duration: 0.5, ease: "back.out(1.5)" }, "+=0.3")
+      .to(".m-clip", { opacity: 1, scale: 1, duration: 0.25 }, "<0.2")
+      .to({}, { duration: 1.4 })
+      .to(".m-clip", { opacity: 0, duration: 0.2 })
+      .to(".m-notch", { width: 64, height: 18, duration: 0.4, ease: "power2.inOut" });
+  }, 0.5);
+  return (
+    <div ref={s} className="relative h-full w-full overflow-hidden">
+      <div className="absolute inset-x-0 top-0 flex h-7 items-center justify-between border-b-2 border-ink bg-paper/90 px-3">
+        <span className="font-mono text-[10px] font-bold text-ink"></span>
+        <div className="m-notch flex items-center justify-center rounded-full bg-ink px-2 text-paper shadow-sm">
+          <span className="m-clip truncate font-mono text-[10px] font-bold">Ctrl+Shift+V</span>
+        </div>
+        <span className="font-mono text-[9px] font-bold text-ink-3">10:42</span>
+      </div>
+      <div className="grid h-full place-items-center pt-6">
+        <div className="flex gap-1.5 font-mono text-[11px] font-bold">
+          <span className="rounded-[6px] border-2 border-ink bg-paper px-1.5 shadow-[2px_2px_0_var(--ink)]">Ctrl</span>
+          <span className="rounded-[6px] border-2 border-ink bg-paper px-1.5 shadow-[2px_2px_0_var(--ink)]">Shift</span>
+          <span className="rounded-[6px] border-2 border-ink bg-paper px-1.5 shadow-[2px_2px_0_var(--ink)]">V</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function Tray() {
   const s = useLoop((tl) => {
     tl.set(".r-toast", { x: 140, opacity: 0 })
@@ -367,4 +397,5 @@ export const previews: Record<string, () => React.ReactNode> = {
   pal: Pal,
   sync: Sync,
   tray: Tray,
+  mac: Mac,
 };

@@ -4,7 +4,7 @@ import { site } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Terms of Service | SnipWise",
-  description: "Terms for using the SnipWise desktop beta and website.",
+  description: "Terms for using the SnipWise desktop and website.",
   alternates: { canonical: "/terms-of-service" },
 };
 
@@ -12,7 +12,7 @@ export default function TermsOfServicePage() {
   return (
     <LegalLayout
       title="Terms of service"
-      summary="These terms explain what to expect while using the SnipWise desktop beta and website. Please read them before connecting an account or enabling sync."
+      summary="These terms explain what to expect while using the SnipWise desktop and website. Please read them before connecting an account."
     >
       <section>
         <h2>Using SnipWise</h2>
@@ -21,20 +21,19 @@ export default function TermsOfServicePage() {
       </section>
 
       <section>
-        <h2>Beta software and availability</h2>
-        <p>SnipWise is currently a beta. Features may change, fail, or be removed, and support may be limited. The desktop app’s local capture and history are designed to work offline. Google sign-in and sync require internet access and the availability of Google and the SnipWise account service.</p>
+        <h2>Availability</h2>
+        <p>SnipWise 1.0.0 is the first official release. Features are stable and support is available. The desktop app’s local capture and history work offline. Google sign-in is optional.</p>
         <p>We may release updates to improve security, compatibility, or functionality. Any future paid offering will show its price and applicable terms before you purchase it.</p>
       </section>
 
       <section>
         <h2>Your data and recovery words</h2>
-        <p>Your clipboard history belongs to you. If you enable sync, the app encrypts it on your device and transfers it to your own Google Drive application data folder. You are responsible for keeping your devices, Google Account, and 24 recovery words secure. SnipWise cannot reset or recover your encryption key if those words are lost.</p>
-        <p>Keep your own backups of anything important. Deleting the app, revoking Google access, or deleting Drive data may make synced information unavailable. Our <a href="/privacy-policy">Privacy Policy</a> explains what account information we handle.</p>
+        <p>Your clipboard history belongs to you. Local clips remain on your device. Keep your own backups of anything important. Deleting the app removes local data. Our <a href="/privacy-policy">Privacy Policy</a> explains what account information we handle.</p>
       </section>
 
       <section>
         <h2>Google and other services</h2>
-        <p>Google sign-in and Drive storage are provided by Google and are subject to your Google terms and settings. Links to GitHub and other third-party sites are governed by those services. SnipWise is responsible for its own app and website, not for the availability or policies of third-party services.</p>
+        <p>Google sign-in is provided by Google and is subject to your Google terms and settings. Links to GitHub and other third-party sites are governed by those services. SnipWise is responsible for its own app and website, not for the availability or policies of third-party services.</p>
       </section>
 
       <section>

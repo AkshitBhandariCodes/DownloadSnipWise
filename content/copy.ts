@@ -90,7 +90,7 @@ export const compareRows: CompareRow[] = [
   },
   {
     topic: "Set up in a minute",
-    snipwise: { mark: "yes", note: "Install and press Win+V" },
+    snipwise: { mark: "yes", note: "Install and press Ctrl+Shift+V" },
     rivals: {
       winv: { mark: "yes" },
       ditto: { mark: "yes" },
@@ -99,7 +99,7 @@ export const compareRows: CompareRow[] = [
     },
   },
   {
-    topic: "A pixel pal on your taskbar",
+    topic: "A snip pal on your taskbar",
     snipwise: { mark: "yes" },
     rivals: {
       winv: { mark: "no" },
@@ -113,7 +113,7 @@ export const compareRows: CompareRow[] = [
 export const faqs: { q: string; a: string }[] = [
   {
     q: "Does it replace Win+V?",
-    a: "Yes. SnipWise opens on Win+V. If Windows keeps that shortcut, it uses Ctrl+Shift+V instead, and you can pick your own.",
+    a: "Yes. SnipWise opens on Ctrl+Shift+V, keeps all your history instead of 25 items, and you can pick your own shortcut if you like.",
   },
   {
     q: "Is it free?",

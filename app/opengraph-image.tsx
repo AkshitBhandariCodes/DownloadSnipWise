@@ -36,16 +36,29 @@ const TEXT =
 
 // Google Fonts serves TTF to clients that do not ask for woff2, which is what
 // the image renderer needs. The `text` parameter keeps the download tiny.
-async function googleFont(family: string, weight: number) {
+// Cached so the image can be prerendered at build time instead of fetching
+// fonts on every request. Returns base64 because cached values must serialize.
+async function fontData(family: string, weight: number) {
+  "use cache";
   try {
     const css = await (
       await fetch(`https://fonts.googleapis.com/css2?family=${family}:wght@${weight}&text=${encodeURIComponent(TEXT)}`)
     ).text();
     const url = css.match(/src: url\((.+?)\) format\('(opentype|truetype)'\)/)?.[1];
-    return url ? await (await fetch(url)).arrayBuffer() : null;
+    return url ? Buffer.from(await (await fetch(url)).arrayBuffer()).toString("base64") : null;
   } catch {
     return null;
   }
+}
+
+async function palData() {
+  "use cache";
+  return (await readFile(join(process.cwd(), "public/brand/pal.png"))).toString("base64");
+}
+
+async function googleFont(family: string, weight: number) {
+  const b64 = await fontData(family, weight);
+  return b64 ? Uint8Array.from(Buffer.from(b64, "base64")).buffer : null;
 }
 
 const logo = (size: number, fill: string, stroke: string) =>
@@ -87,9 +100,9 @@ export default async function Image() {
     googleFont("Bricolage+Grotesque", 600),
     googleFont("Bricolage+Grotesque", 800),
     googleFont("Geist+Mono", 500),
-    readFile(join(process.cwd(), "public/brand/pal.png")),
+    palData(),
   ]);
-  const palSrc = `data:image/png;base64,${pal.toString("base64")}`;
+  const palSrc = `data:image/png;base64,${pal}`;
   const fonts = [
     display && { name: "Bricolage", data: display, weight: 600 as const },
     displayBold && { name: "Bricolage", data: displayBold, weight: 800 as const },
